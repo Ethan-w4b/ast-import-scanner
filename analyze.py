@@ -41,8 +41,14 @@ def scanForImports(file):
             r = Import(module, n.name.split('.'), n.asname)
             found_imports.append(r[1])
             #print(r[1])
-            if r[1] not in good_imports:
-                FLAG = True
+            if r[0] == "":
+                if r[1] not in good_imports:
+                    FLAG = True
+                else:
+                    FLAG = False
             else:
-                pass
+                if r[0] not in good_imports:
+                    FLAG = True
+                else:
+                    FLAG = False
     return FLAG
